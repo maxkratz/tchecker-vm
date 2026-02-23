@@ -108,8 +108,6 @@
           <Adapter slot="0" enabled="true" MACAddress="525400fa58c8 " type="82540EM">
             <NAT localhost-reachable="true">
               <DNS use-proxy="true"/>
-              <Forwarding name="ssh" proto="1" hostip="127.0.0.1" hostport="2222" guestport="22"/>
-              <Forwarding name="tcp53389" proto="1" hostport="53389" guestport="3389"/>
             </NAT>
           </Adapter>
         </Network>
