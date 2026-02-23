@@ -5,7 +5,9 @@
 set -e
 
 # download Debian image
-wget https://cloud.debian.org/images/cloud/trixie/latest/debian-13-generic-amd64.qcow2
+if [ ! -f debian-13-generic-amd64.qcow2 ]; then
+    wget https://cloud.debian.org/images/cloud/trixie/latest/debian-13-generic-amd64.qcow2
+fi
 sudo cp debian-13-generic-amd64.qcow2 /var/lib/libvirt/images/
 
 # create VM and start provisioning
