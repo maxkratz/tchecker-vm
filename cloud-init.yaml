@@ -25,6 +25,7 @@ write_files:
       apt-get upgrade -yq
       apt-get install -yq tmux
       apt-get install -yq xfce4
+      apt-get install -yq firefox-esr
       shutdown -h now
     owner: 'root:root'
     permissions: '0644'
