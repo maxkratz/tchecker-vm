@@ -105,7 +105,7 @@
         <Display controller="VMSVGA" VRAMSize="128"/>
         <Firmware type="EFI"/>
         <Network>
-          <Adapter slot="0" enabled="true" MACAddress="525400fa58c8 " type="82540EM">
+          <Adapter slot="0" enabled="true" MACAddress="525400fa58c8" type="82540EM">
             <NAT localhost-reachable="true">
               <DNS use-proxy="true"/>
             </NAT>
