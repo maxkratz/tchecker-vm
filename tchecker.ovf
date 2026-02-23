@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <Envelope ovf:version="1.0" xml:lang="en-US" xmlns="http://schemas.dmtf.org/ovf/envelope/1" xmlns:ovf="http://schemas.dmtf.org/ovf/envelope/1" xmlns:rasd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData" xmlns:vssd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vbox="http://www.virtualbox.org/ovf/machine">
   <References>
-    <File ovf:id="file1" ovf:href="tchecker.nvram" ovf:size="540672"/>
     <File ovf:id="file2" ovf:href="tchecker-disk001.vmdk"/>
   </References>
   <DiskSection>
@@ -45,14 +44,6 @@
         <rasd:InstanceID>2</rasd:InstanceID>
         <rasd:ResourceType>4</rasd:ResourceType>
         <rasd:VirtualQuantity>8192</rasd:VirtualQuantity>
-      </Item>
-      <Item>
-        <rasd:Caption>NVRAM</rasd:Caption>
-        <rasd:Description>NVRAM pathname</rasd:Description>
-        <rasd:ElementName>NVRAM</rasd:ElementName>
-        <rasd:HostResource>ovf:/file/file1</rasd:HostResource>
-        <rasd:InstanceID>3</rasd:InstanceID>
-        <rasd:ResourceType>32768</rasd:ResourceType>
       </Item>
       <Item>
         <rasd:Address>0</rasd:Address>
