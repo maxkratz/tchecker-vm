@@ -15,5 +15,7 @@ virt-install --name tchecker --memory 8192 --vcpus 4 --disk=size=10,backing_stor
 # create OVA template
 # sudo apt-get install -yq qemu-utils
 sudo qemu-img convert -p -f qcow2 -O vmdk /var/lib/libvirt/images/tchecker.qcow2 tchecker-disk001.vmdk
-
 tar -cvf tchecker.ova tchecker.ovf tchecker-disk001.vmdk
+
+# fixes permissions
+sudo chown -R $(whoami):$(whoami) .
