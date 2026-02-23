@@ -18,4 +18,4 @@ sudo qemu-img convert -p -f qcow2 -O vmdk /var/lib/libvirt/images/tchecker.qcow2
 tar -cvf tchecker.ova tchecker.ovf tchecker-disk001.vmdk
 
 # fixes permissions
-sudo chown -R $(whoami):$(whoami) .
+sudo chown -R 1000:1000 .
