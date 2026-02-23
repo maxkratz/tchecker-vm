@@ -105,7 +105,7 @@
         <Display controller="VMSVGA" VRAMSize="128"/>
         <Firmware type="EFI"/>
         <Network>
-          <Adapter slot="0" enabled="true" MACAddress="080027D028A8" type="82540EM">
+          <Adapter slot="0" enabled="true" MACAddress="525400802695" type="82540EM">
             <NAT localhost-reachable="true">
               <DNS use-proxy="true"/>
               <Forwarding name="ssh" proto="1" hostip="127.0.0.1" hostport="2222" guestport="22"/>
