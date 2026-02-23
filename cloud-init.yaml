@@ -1,0 +1,34 @@
+#cloud-config
+
+# create user
+users:
+  - name: tchecker
+    # so our user can just sudo without any password
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_passwd: false
+    # password = tchecker
+    passwd: $6$pnk.joQHRL7WPvyn$g3eWumplhDyjq5EJoGjgWXS4GFlqDmcDiLvzMDty5Q3EL1Do0blsNsr5Oo/zMm4vvTY5P6EBmK/WlEAIYI7qP/
+
+# set host name
+hostname: tchecker
+create_hostname_file: true
+
+# copy setup script
+write_files:
+  - path: /usr/local/bin/setup.sh
+    content: |
+      #!/bin/bash
+      set -e
+      export DEBIAN_FRONTEND=noninteractive
+      apt-get update
+      apt-get upgrade -yq
+      apt-get install -yq tmux
+      apt-get install -yq xfce4
+      shutdown -h now
+    owner: 'root:root'
+    permissions: '0644'
+
+# execute setup script
+runcmd:
+  - sudo /bin/bash /usr/local/bin/setup.sh
