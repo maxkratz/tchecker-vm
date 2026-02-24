@@ -1,0 +1,21 @@
+name: vm-provision
+
+on:
+  push:
+    branches:
+      - main
+      - 'testing/**'
+      - 'feature/**'
+      - 'hotfix/**'
+    # Run pipeline for release tags
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  provision:
+    runs-on: [ubuntu-24.04]
+    steps:
+    - uses: actions/checkout@v6
+    - name: run script
+      run: | 
+        sudo bash run.sh
