@@ -1,5 +1,8 @@
 name: vm-provision
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
