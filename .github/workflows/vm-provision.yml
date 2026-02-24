@@ -1,0 +1,69 @@
+name: vm-provision
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+      - 'testing/**'
+      - 'feature/**'
+      - 'hotfix/**'
+    # Run pipeline for release tags
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  provision:
+    runs-on: [ubuntu-24.04]
+    steps:
+    - uses: actions/checkout@v6
+    # Enable KVM and install QEMU + libvirt + virt-manager
+    # Based on:
+    # https://github.com/orgs/community/discussions/8305#discussioncomment-5888654
+    - name: Enable KVM group perms
+      run: |
+        echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+        sudo udevadm control --reload-rules
+        sudo udevadm trigger --name-match=kvm
+        sudo apt-get update
+        sudo apt-get install -y - qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+        sudo usermod -a -G kvm,libvirt $USER
+    - name: Run script
+      # Workaround to get a TTY device
+      # https://github.com/gfx/example-github-actions-with-tty
+      shell: 'script -q -e -c "bash {0}"'
+      run: |
+        sudo bash run.sh
+    - name: Upload artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: tchecker-ova
+        path: tchecker.ova
+
+  # Create a release if running on tag
+  create-release:
+    needs: [provision]
+    runs-on: ubuntu-24.04
+    # Only run on pushed tags (and explicitly ignore scheduled runs)
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/') && github.event_name != 'schedule'
+    steps:
+      - name: Collect artifacts
+        uses: actions/download-artifact@v7
+      - name: Create split ZIP archive
+        run: |
+          sudo apt-get install -yq zip
+          zip -r -s 1990m tchecker-vm.zip tchecker.ova
+      # Due to a bug in the release action, we have to upload all artifacts step-by-step
+      # https://github.com/softprops/action-gh-release/issues/243
+      - name: Release tchecker-vm (1)
+        uses: softprops/action-gh-release@v2
+        with:
+          body: "The VM archive can not be directly added to this release because of the size limitation of 2GB per file. Please download the split ZIP archive and extract it manually."
+          files: tchecker-vm.zip
+      - name: Release tchecker-vm (2)
+        uses: softprops/action-gh-release@v2
+        with:
+          body: "The VM archive can not be directly added to this release because of the size limitation of 2GB per file. Please download the split ZIP archive and extract it manually."
+          files: tchecker-vm.z01

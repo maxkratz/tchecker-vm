@@ -23,7 +23,7 @@ fi
 # download Debian image
 if [ ! -f debian-13-generic-amd64.qcow2 ]; then
     log "Downloading Debian image."
-    wget https://cloud.debian.org/images/cloud/trixie/latest/debian-13-generic-amd64.qcow2
+    wget -q https://cloud.debian.org/images/cloud/trixie/latest/debian-13-generic-amd64.qcow2
 else
     log "Download skipped. Using local image."
 fi
