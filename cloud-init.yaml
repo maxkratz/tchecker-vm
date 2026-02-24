@@ -26,10 +26,13 @@ write_files:
       apt-get install -yq tmux
       apt-get install -yq xfce4
       apt-get install -yq firefox-esr
-      shutdown -h now
     owner: 'root:root'
     permissions: '0644'
 
 # execute setup script
 runcmd:
   - sudo /bin/bash /usr/local/bin/setup.sh
+
+power_state:
+  mode: poweroff
+  message: Provisioning finished
