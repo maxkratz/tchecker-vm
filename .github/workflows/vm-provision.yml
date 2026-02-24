@@ -23,7 +23,6 @@ jobs:
         sudo udevadm trigger --name-match=kvm
         sudo apt-get update
         sudo apt-get install -y - qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
-        sudo getent group
         sudo usermod -a -G kvm,libvirt $USER
     - name: run script
       run: | 
