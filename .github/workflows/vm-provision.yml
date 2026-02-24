@@ -25,5 +25,8 @@ jobs:
         sudo apt-get install -y - qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
         sudo usermod -a -G kvm,libvirt $USER
     - name: run script
+      # Workaround to get a TTY device
+      # https://github.com/gfx/example-github-actions-with-tty
+      shell: 'script -q -e -c "bash {0}"'
       run: | 
         sudo bash run.sh
