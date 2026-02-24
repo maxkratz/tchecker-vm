@@ -5,7 +5,7 @@
   </References>
   <DiskSection>
     <Info>List of the virtual disks used in the package</Info>
-    <Disk ovf:capacity="136365211648" ovf:diskId="vmdisk1" ovf:fileRef="file1" ovf:format="http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized" vbox:uuid="fec17f1a-c0bd-40f4-81f4-3ea567877c67"/>
+    <Disk ovf:capacity="10737418240" ovf:diskId="vmdisk1" ovf:fileRef="file1" ovf:format="http://www.vmware.com/interfaces/specifications/vmdk.html#streamOptimized" vbox:uuid="fec17f1a-c0bd-40f4-81f4-3ea567877c67"/>
   </DiskSection>
   <NetworkSection>
     <Info>Logical networks used in the package</Info>
@@ -92,7 +92,7 @@
         <rasd:ResourceType>10</rasd:ResourceType>
       </Item>
     </VirtualHardwareSection>
-    <vbox:Machine ovf:required="false" version="1.19-linux" uuid="{c2aa71bd-794d-4327-9383-a1d659ec5d8e}" name="tchecker" OSType="Ubuntu_64" snapshotFolder="Snapshots" lastStateChange="2025-12-10T06:13:39Z">
+    <vbox:Machine ovf:required="false" version="1.19-linux" uuid="{c2aa71bd-794d-4327-9383-a1d659ec5d8e}" name="tchecker" OSType="Debian_64" snapshotFolder="Snapshots" lastStateChange="2026-02-24T07:50:00Z">
       <ovf:Info>Complete VirtualBox machine configuration in VirtualBox format</ovf:Info>
       <Hardware>
         <Memory RAMSize="8192"/>
